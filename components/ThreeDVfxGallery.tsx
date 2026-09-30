@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { projectVideoUrl } from "@/lib/projectVideo";
 
 type ThreeDVfxItem = {
   src: string;
@@ -27,7 +28,7 @@ export default function ThreeDVfxGallery({ items, galleryClassName = "creative-d
                 return (
                   <button className="creative-design-card" type="button" key={`${item.src}-${index}`} onClick={() => setSelectedIndex(projectNumber - 1)} aria-label={`Enlarge ${projectLabel} project ${projectNumber}`}>
                     {item.type === "video" ? (
-                      <video src={item.src} muted autoPlay loop playsInline preload="metadata" aria-label={`${projectLabel} project ${projectNumber}`} />
+                      <video src={projectVideoUrl(item.src)} muted autoPlay loop playsInline preload="metadata" aria-label={`${projectLabel} project ${projectNumber}`} />
                     ) : (
                       <img src={item.src} alt={`${projectLabel} project ${projectNumber}`} />
                     )}
@@ -43,7 +44,7 @@ export default function ThreeDVfxGallery({ items, galleryClassName = "creative-d
           <button className="creative-design-close" type="button" onClick={() => setSelectedIndex(null)} aria-label={`Close expanded ${projectLabel} project`}>X</button>
           <button className="creative-design-arrow creative-design-arrow-left" type="button" onClick={(event) => { event.stopPropagation(); setSelectedIndex((selectedIndex + items.length - 1) % items.length); }} aria-label={`Previous ${projectLabel} project`}>←</button>
           {items[selectedIndex].type === "video" ? (
-            <video src={items[selectedIndex].src} controls preload="auto" playsInline onClick={(event) => event.stopPropagation()} />
+            <video src={projectVideoUrl(items[selectedIndex].src)} controls preload="auto" playsInline onClick={(event) => event.stopPropagation()} />
           ) : (
             <img src={items[selectedIndex].src} alt={`Expanded ${projectLabel} project ${selectedIndex + 1}`} onClick={(event) => event.stopPropagation()} />
           )}

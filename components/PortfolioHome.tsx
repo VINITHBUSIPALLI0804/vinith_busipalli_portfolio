@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent, type PointerEvent } from "react";
+import { projectVideoUrl } from "@/lib/projectVideo";
 import ModelViewer from "./ModelViewer";
 
 const worlds = [
@@ -420,7 +421,7 @@ export default function PortfolioHome() {
                     <div className="featured-work-media">
                       {project.type === "video" ? (
                         <video autoPlay muted loop playsInline preload="metadata" aria-label={project.title}>
-                          <source src={project.src} type="video/mp4" />
+                          <source src={projectVideoUrl(project.src)} type="video/mp4" />
                         </video>
                       ) : (
                         <img src={project.src} alt={project.title} />
