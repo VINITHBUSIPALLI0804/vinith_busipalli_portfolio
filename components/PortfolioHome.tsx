@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent, type PointerEvent } from "react";
 import { projectVideoUrl } from "@/lib/projectVideo";
+import LazyVideoPreview from "./LazyVideoPreview";
 import ModelViewer from "./ModelViewer";
 
 const worlds = [
@@ -11,7 +12,7 @@ const worlds = [
     title: "TECH",
     statement: "ENGINEER. AUTOMATE. SCALE.",
     items: ["SOFTWARE ENGINEERING", "AI / ML", "SYSTEMS", "AUTOMATION"],
-    href: "/tech",
+    href: "/tech/coming-soon",
   },
   {
     number: "02",
@@ -420,9 +421,7 @@ export default function PortfolioHome() {
                   <Link className="featured-work-card" href={project.href} key={`${project.title}-${index}`}>
                     <div className="featured-work-media">
                       {project.type === "video" ? (
-                        <video autoPlay muted loop playsInline preload="metadata" aria-label={project.title}>
-                          <source src={projectVideoUrl(project.src)} type="video/mp4" />
-                        </video>
+                        <LazyVideoPreview src={projectVideoUrl(project.src)} ariaLabel={project.title} />
                       ) : (
                         <img src={project.src} alt={project.title} />
                       )}
@@ -510,7 +509,7 @@ export default function PortfolioHome() {
           </div>
           <div>
             <h3>PORTFOLIOS</h3>
-            <Link href="/tech">Technology</Link>
+            <Link href="/tech/coming-soon">Technology</Link>
             <Link href="/creative">Creative</Link>
           </div>
         </nav>

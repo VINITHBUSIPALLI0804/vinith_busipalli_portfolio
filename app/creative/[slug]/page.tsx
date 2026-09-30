@@ -58,7 +58,25 @@ const cases = {
   },
 } as const;
 
-const graphicDesignImages = Array.from({ length: 12 }, (_, index) => `/projects/graphic-design/design-${index + 1}.jpeg`);
+const graphicDesignItems = [
+  ...Array.from({ length: 12 }, (_, index) => ({
+    src: `/projects/graphic-design/design-${index + 1}.jpeg`,
+    type: "image" as const,
+  })),
+  ...[
+    "WhatsApp Image 2026-09-30 at 15.13.07.jpeg",
+    "WhatsApp Image 2026-09-30 at 15.13.08.jpeg",
+    "WhatsApp Image 2026-09-30 at 15.13.08 (2).jpeg",
+    "WhatsApp Image 2026-09-30 at 15.13.30.jpeg",
+    "WhatsApp Image 2026-09-30 at 15.14.07.jpeg",
+    "White and Green Simple Happy Ugadi Festival Greeting Instagram\u00a0Story.png",
+    "\u201cHAPPY.png",
+  ].map((name) => ({
+    src: `/projects/graphic-design/${encodeURIComponent(name)}`,
+    type: "image" as const,
+  })),
+  { src: "/projects/graphic-design/Ram%20Navami.mp4", type: "video" as const },
+];
 const lensCreationVideos = Array.from({ length: 6 }, (_, index) => `/projects/lens/${index + 1}.mp4`);
 const videoEditingVideos = [
   "/projects/video-editing/0408-1.mp4",
@@ -138,7 +156,7 @@ export default async function CreativeCaseStudy({ params }: { params: Promise<{ 
             <h1>GRAPHIC<em> DESIGNING.</em></h1>
             <p>Posters, social media designs and visual graphics.</p>
           </div>
-          <GraphicDesignGallery images={graphicDesignImages} />
+          <GraphicDesignGallery items={graphicDesignItems} />
           <Link className="creative-case-back creative-design-back" href="/creative#creative-work">← BACK TO CREATIVE WORK</Link>
         </section>
       ) : slug === "video" ? (

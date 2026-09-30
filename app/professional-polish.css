@@ -567,3 +567,61 @@ h4 {
     transition-duration: 0.01ms !important;
   }
 }
+.technical-coming-soon {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1.5rem;
+  background: #080808;
+  color: #f2efe8;
+  text-align: center;
+}
+
+.technical-coming-soon-content {
+  display: grid;
+  justify-items: center;
+  gap: 1.25rem;
+}
+
+.technical-coming-soon-content > p {
+  margin: 0;
+  color: #c9a45c;
+  font: 600 .75rem/1.5 var(--font-manrope), sans-serif;
+  letter-spacing: .16em;
+}
+
+.technical-coming-soon-content h1 {
+  margin: 0;
+  font: 700 clamp(3.5rem, 10vw, 7rem)/.95 var(--font-manrope), sans-serif;
+  letter-spacing: -.06em;
+}
+
+.technical-coming-soon-content h1 em {
+  color: #c9a45c;
+  font-style: normal;
+}
+
+.technical-coming-soon-content > span {
+  color: #a8a39a;
+  font: 400 1rem/1.6 var(--font-dm-sans), sans-serif;
+}
+
+.technical-coming-soon-content a {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: .75rem;
+  padding: 0 1.5rem;
+  border: 1px solid #c9a45c;
+  color: #f2efe8;
+  font: 600 .8rem/1 var(--font-manrope), sans-serif;
+  letter-spacing: .08em;
+  text-decoration: none;
+  transition: background-color .25s ease, color .25s ease;
+}
+
+.technical-coming-soon-content a:hover {
+  background: #c9a45c;
+  color: #080808;
+}
