@@ -7,13 +7,13 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import CreativeDriveWorksLink from "@/components/CreativeDriveWorksLink";
 
 const projects = [
-  ["01", "GRAPHIC DESIGN", "Posters, social media designs and visual graphics.", "GRAPHIC DESIGN", "PHOTOSHOP · ILLUSTRATOR", "identity"],
-  ["02", "3D / VFX", "3D models, effects and visual experiments.", "3D / VFX", "BLENDER · CINEMA 4D", "character"],
-  ["03", "VIDEO EDITING", "Reels, short videos and cinematic edits.", "VIDEO EDITING", "PREMIERE PRO · AFTER EFFECTS", "video"],
-  ["04", "LENS CREATION", "Interactive AR lenses and social experiences.", "LENS CREATION", "LENS STUDIO · BLENDER", "world"],
-  ["05", "UI / UX", "Clean and creative digital interface designs.", "UI / UX", "FIGMA · PHOTOSHOP", "motion"],
-  ["06", "GAME DEVELOPMENT", "Game concepts, environments and interactive experiences.", "GAME DEVELOPMENT", "UNITY · BLENDER", "content"],
-  ["07", "AR / VR", "Immersive AR/VR experiences and experiments.", "AR / VR", "UNITY · BLENDER", "arvr"],
+  { number: "01", title: "GRAPHIC DESIGN", description: "Posters, social media designs and visual graphics.", visual: "identity" },
+  { number: "02", title: "3D / VFX", description: "3D models, effects and visual experiments.", visual: "character" },
+  { number: "03", title: "VIDEO EDITING", description: "Reels, short videos and cinematic edits.", visual: "video" },
+  { number: "04", title: "LENS CREATION", description: "Interactive AR lenses and social experiences.", visual: "world" },
+  { number: "05", title: "UI / UX", description: "Clean and creative digital interface designs.", visual: "motion" },
+  { number: "06", title: "GAME DEVELOPMENT", description: "Game concepts, environments and interactive experiences.", visual: "content" },
+  { number: "07", title: "AR / VR", description: "Immersive AR/VR experiences and experiments.", visual: "arvr" },
 ] as const;
 
 const toolkit: [string, string[]][] = [
@@ -139,7 +139,18 @@ export default function CreativePage() {
 
       <section className="creative-work" id="creative-work">
         <div className="creative-heading"><div className="creative-nameplate"><h2>WORKS</h2></div></div>
-        <div className="creative-projects">{projects.map(([number, title, description, discipline, tools, visual]) => <a className={`creative-project creative-project-${visual}`} href={`/creative/${visual}`} key={number}><div className="creative-project-art">{visual === "identity" ? <img src="/gd.png" alt="Graphic design work" /> : visual === "character" ? <img src="/3d.png" alt="3D and VFX work" /> : visual === "video" ? <img src="/ve.png" alt="Video editing work" /> : visual === "world" ? <img src="/lc.png" alt="Lens creation work" /> : visual === "motion" ? <img src="/ui.png" alt="UI and UX work" /> : visual === "arvr" ? <img src="/arvr.png" alt="AR and VR work" /> : <img src="/gad.png" alt="Game development work" />}</div><div className="creative-project-copy"><div><h2>{title}</h2><p>{description}</p></div></div></a>)}</div>
+        <div className="creative-projects">
+          {projects.map(({ number, title, description, visual }) => (
+            <a className={`creative-project creative-project-${visual}`} href={`/creative/${visual}`} key={number}>
+              <div className="creative-project-art">
+                {visual === "identity" ? <img src="/gd.png" alt="Graphic design work" /> : visual === "character" ? <img src="/3d.png" alt="3D and VFX work" /> : visual === "video" ? <img src="/ve.png" alt="Video editing work" /> : visual === "world" ? <img src="/lc.png" alt="Lens creation work" /> : visual === "motion" ? <img src="/ui.png" alt="UI and UX work" /> : visual === "arvr" ? <img src="/arvr.png" alt="AR and VR work" /> : <img src="/gad.png" alt="Game development work" />}
+              </div>
+              <div className="creative-project-copy">
+                <div><h2>{title}</h2><p>{description}</p></div>
+              </div>
+            </a>
+          ))}
+        </div>
       </section>
 
       <section className="creative-toolkit" id="toolkit"><div className="creative-heading"><div className="creative-nameplate"><h2>SKILLS AND TOOLS</h2></div></div><div className="creative-tool-grid">{toolkit.map(([label, items]) => <div key={label}><h3>{label}</h3>{items.map((item) => <span key={item}>{item}</span>)}</div>)}</div></section>
